@@ -18,20 +18,20 @@ Database: MySql
 Setup Instructions
 Clone the Repository:
 
-git clone https://github.com/yourusername/pc-build-estore.git
+git clone https://github.com/itsHaarsh/pc-build-estore.git
 cd pc-build-estore
 
-Install Dependencies:
+*Install Dependencies:
 pip install -r requirements.txt
 
-Set Up the Database:
+*Set Up the Database:
 python manage.py migrate
 
-Create a Superuser:
+*Create a Superuser:
 python manage.py createsuperuser
 
-Run the Development Server:
+*Run the Development Server:
 python manage.py runserver
 
-Access the Application:
-Open your browser and navigate to http://127.0.0.1:8000/
+*Access the Application:
+Open your browser and navigate to "http://127.0.0.1:8000/"
