@@ -19,6 +19,7 @@ Setup Instructions
 Clone the Repository:
 
 git clone https://github.com/itsHaarsh/pc-build-estore.git
+
 cd pc-build-estore
 
 *Install Dependencies:
