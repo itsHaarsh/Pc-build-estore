@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block main %}
+<style>
+    body {
+        background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+        
+    }
+    h3,p {
+        color: white;
+    }
+</style>
+ <!--Main start-->
+ <div class="row mt-5"> 
+    {% for x in products %}
+    <div class="col-md-6"> 
+        <img src="{{x.pimage.url}}" width="450px" height="450px" alt="" />
+    </div>
+    <div class="col-md-6">
+        <p><strong>Product Name:&nbsp;&nbsp;</strong>{{x.name}}</p>
+        <p><strong>Price:&nbsp;&nbsp;</strong>Rs.{{x.price}}</p>
+        
+        <p><strong>Category:&nbsp;&nbsp;</strong>{% if x.cat == 1 %}
+            cpu
+            {% elif x.cat == 2 %}
+            graphic-card
+            {% elif x.cat == 3 %}
+            motherboard
+            {% endif %}</p>
+        
+        <p><strong>Product Decription:&nbsp;&nbsp;</strong>{{x.pdetails}}</p>
+        <br>
+        <a href="/addtocart/{{x.id}}"><button class="btn btn-warning">Add to Cart</button></a>&nbsp;
+        <a href="/viewcart"><button class="btn btn-warning">View Cart</button></a>&nbsp;
+        <a href="/"><button class="btn btn-warning">Shop More</button></a>
+        
+        {% if success %}
+            <div class="alert alert-success mt-3">
+                {{success}}
+            </div>
+        {% endif %}
+        {% if msg %}
+            <div class="alert alert-danger mt-3">
+                {{msg}}
+            </div>
+        {% endif %}
+            
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<!--main end-->
+    
+{% endblock main %}
+    

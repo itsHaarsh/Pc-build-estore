@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="{% static 'js/main.js' %}" ></script>
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+    </head>
+    <body>
+       <h1>Templates as a response</h1>
+       {{greet}}<br>
+       
+       {% comment %}
+        <p>{{x}}</p>
+       <p>{{y}}</p>
+       {% if x > y %}
+       <p>{{x}} is greater</p>
+       {% else %}
+       <p>{{y}} is greater</p>
+       {% endif %}
+       
+
+       <p>List: {{l}}</p> <br>
+       {% for i in l %}
+       <p>{{i}}</p>
+       {% endfor %}
+    
+    
+    {% for i in product %}
+      <strong>sr.no:</strong>{{forloop.counter}}<br>
+      <strong>Name:</strong>{{i.name}}<br>
+      <strong>Category:</strong>{{i.cat}}<br>
+      <strong>Price:</strong>{{i.price}}<br>
+      <hr>
+      {% endfor %}
+
+
+      <table border="3" align="center" cellspacing="0px" cellpadding="10px">
+        <tr>
+            <Td colspan="4" align="center" ><strong>Test Table</strong></Td>
+        </tr>
+        <tr>
+            <th width="100px" >sr.no</th>
+            <th width="100px">Name</th>
+            <th width="100px">Category</th>
+            <th width="100px">Price</th>
+        </tr>
+
+        <tr>
+            {% for i in product %}
+                <td align='center'>{{forloop.counter}}</td>
+                <td align='center'>{{i.name}}</td>
+                <td align='center'>{{i.cat}}</td>
+                <td align='center'>{{i.price}}</td>
+        </tr>
+                            
+      {% endfor %}
+        
+
+      </table>
+
+      {% endcomment %}
+
+
+      <button onclick="greet()" >Click Me</button>
+      <br>
+      <hr>
+
+
+      <img src="{% static 'images\wallpaperflare.com_wallpaper (2).jpg' %}" width="1000px" height="500px" />
+
+
+      
+        <script src="" ></script>
+    </body>
+</html>

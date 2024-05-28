@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<style>
+    body {
+        background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+        
+    }
+    .about-section {
+        background-color: #343a40;
+        color: #fff;
+        padding: 60px 20px;
+        border-radius: 5px;
+    }
+
+    .about-section h2 {
+        color: #ffdd57;
+        margin-bottom: 30px;
+    }
+
+    .about-section p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .about-section hr {
+        border-top: 1px solid #ffdd57;
+        width: 50px;
+    }
+</style>
+
+<div class="container mt-5 about-section">
+    <h2>About Us</h2>
+    <hr>
+    <p>
+        Welcome to our PC Parts eStore! We are your one-stop destination for all your PC building needs. Whether you're a seasoned builder or a first-time PC enthusiast, we have everything you need to create the perfect computer.
+    </p>
+    <p>
+        Our mission is to provide the highest quality components at competitive prices, ensuring that you get the best performance and value for your money. From CPUs and motherboards to graphics cards and storage solutions, we have it all.
+    </p>
+    <p>
+        We pride ourselves on our excellent customer service and support. Our knowledgeable team is always here to help you with any questions or issues you may have. We believe in building lasting relationships with our customers, and we're committed to your satisfaction.
+    </p>
+    <p>
+        Thank you for choosing our PC Parts eStore. We look forward to helping you build your dream PC!
+    </p>
+</div>
+{% endblock main %}

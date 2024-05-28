@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<style>
+    body {
+        background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+        
+    }
+    .contact-section {
+        background-color: #343a40;
+        color: #fff;
+        padding: 60px 20px;
+        border-radius: 5px;
+    }
+
+    .contact-section h2 {
+        color: #ffdd57;
+        margin-bottom: 30px;
+    }
+
+    .contact-section p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .contact-section hr {
+        border-top: 1px solid #ffdd57;
+        width: 50px;
+    }
+
+    .contact-section .form-control {
+        background-color: #495057;
+        color: #fff;
+        border: 1px solid #ffdd57;
+    }
+
+    .contact-section .form-control:focus {
+        background-color: #495057;
+        color: #fff;
+        border-color: #ffdd57;
+    }
+
+    .contact-section .btn-warning {
+        background-color: #ffdd57;
+        border: none;
+        color: #343a40;
+    }
+
+    .contact-section .btn-warning:hover {
+        background-color: #ffc107;
+        color: #343a40;
+    }
+</style>
+
+<div class="container mt-1 contact-section">
+    <h2>Contact Us</h2>
+    <hr>
+    <p>If you have any questions or need assistance, feel free to contact us using the form below.</p>
+
+    <div id="submission-message"></div>
+
+    <form id="contact-form">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent the form from submitting
+
+        // Collect form data
+        const formData = new FormData(this);
+
+        // Send form data using fetch
+        fetch('{% url 'contact' %}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('submission-message').innerHTML = '<div class="alert alert-success">' + data.success + '</div>';
+                // Clear form fields
+                this.reset();
+            } else if (data.error) {
+                document.getElementById('submission-message').innerHTML = '<div class="alert alert-danger">' + data.error + '</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('submission-message').innerHTML = '<div class="alert alert-danger">An error occurred. Please try again later.</div>';
+        });
+    });
+</script>
+{% endblock main %}

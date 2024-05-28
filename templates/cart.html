@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block main %}
+
+<!--Main start-->
+<style>
+    body {
+        background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+        
+    }
+    h3,p {
+        color: white;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-9 mt-2">
+        {% for x in data %}
+        {% if forloop.counter == 1 %}
+        <h5 class="bg-warning text-black p-2">Customer details</h5>
+        <p><strong>Name: </strong>{{x.uid.username}}</p>
+        <p><strong>Mobile: </strong>9090909090</p>
+        <p><strong>Email: </strong>{{x.uid.email}}</p>
+        {% endif %}
+        {% endfor %}
+        <h5 class="bg-warning text-black p-2" >Product details</h5>
+        {% for x in data %}
+        <div class="row mt-3">
+            <div class="col-md-4"> 
+                <img src="{{x.pid.pimage.url}}" width="150px" height="150px" alt="" />
+            </div>
+            <div class="col-md-8">
+                <p><strong>Product Name:&nbsp;&nbsp;</strong>{{x.pid.name}}</p>
+                <p><strong>Price:&nbsp;&nbsp;</strong>Rs.{{x.pid.price}}</p>
+                {% if x.pid.cat == 1 %}
+                    <p><strong>Category:&nbsp;&nbsp;</strong>Mobile</p>
+                    {% elif x.pid.cat == 2 %}
+                    <p><strong>Category:&nbsp;&nbsp;</strong>Shoes</p>
+                    {% else %}
+                    <p><strong>Category:&nbsp;&nbsp;</strong>Clothes</p>
+                    {% endif %}
+                <p><strong>Product Decription:&nbsp;&nbsp;</strong>{{x.pid.pdetails}}</p>
+                <br>
+                <p>
+                    <strong>QTY:</strong>
+                    <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                    <input type="number" value="{{x.qty}}"/>
+                    <a href="/updateqty/1/{{x.id}}"><button class="btn btn-success">+</button></a>
+
+                    </p>
+                <a href="/remove/{{x.id}}"><button class="btn btn-warning">Remove</button></a>
+            </div>
+        </div><!--product detail div-->
+        {% endfor %}
+    </div><!--customer and product details end-->
+    <div class="col-md-3">
+        <h5 class="bg-warning text-black p-2 mt-2">Total Amount</h5>
+        <p><strong>Total({{n}} items): </strong>Rs.{{total}}</p>
+        <hr>
+        <p><strong>Total Amount: </strong>Rs.{{total}}</p>
+        <a href="/placeorder"><button class="btn btn-warning text-black">Place Order</button></a>
+    </div><!--total amount end-->
+
+</div>
+
+
+<!--main end-->
+
+
+{% endblock main %}

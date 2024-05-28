@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <!--Main start-->
+<style>
+  body {
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    
+}
+  .filter-section {
+        background-color: #343a40;
+        color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .filter-section h5,
+    .filter-section p,
+    .filter-section label {
+        color: #fff;
+    }
+
+    .filter-section a {
+        color: #ffdd57;
+        text-decoration: none;
+    }
+
+    .filter-section a:hover {
+        color: #ffdd57;
+        text-decoration: underline;
+    }
+
+    .filter-section hr {
+        border-top: 1px solid #ffdd57;
+    }
+
+    .filter-section .btn-warning {
+        background-color: #ffdd57;
+        border: none;
+        color: #343a40;
+    }
+
+    .filter-section .btn-warning:hover {
+        background-color: #ffc107;
+        color: #343a40;
+    }
+    
+    {% comment %} .content{
+      background-color: ;
+    } {% endcomment %}
+
+</style>
+
+<!--Main start-->
+<div class="row mt-3">
+    <div class="col-md-4 filter-section">
+        <h5 class="mb-4">Filter by category</h5>
+        <hr>
+        <p><a href="/" class="anchor">all</a></p>
+        <p><a href="/catfilter/1" class="anchor">By cpu</a></p>
+        <p><a href="/catfilter/2" class="anchor">By graphic-card</a></p>
+        <p><a href="/catfilter/3" class="anchor">By motherboard</a></p>
+         
+        <h5 class="mt-4">Filter by Price Range</h5>
+        <form action="/range">
+            <div class="mb-3">
+                <label for="input1" class="form-label">min value:</label>
+                <input type="number" name='min' class="form-control" id="input1" placeholder="minimum value">
+            </div>
+            <div class="mb-3">
+                <label for="input2" class="form-label">max value:</label>
+                <input type="number" name='max' class="form-control" id="input2" placeholder="maximum value">
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-warning" value="submit">
+            </div>
+        </form>
+        <h5>Sort by Price</h5>
+        <hr>
+        <button class="btn btn-warning">
+            <a href="/sort/0" class="anchor" style="color:black;">Low to High</a>
+        </button>
+        <button class="btn btn-warning">
+            <a href="/sort/1" class="anchor" style="color:black;">High to Low</a>
+        </button>
+    </div>
+    
+    <div class="col-md-8">
+      <div class="content">
+      <div class="row">
+          {% for x in products %}
+          <div class="col-md-4 mt-2 ">
+              <div class="card">
+                  <img src="{{ x.pimage.url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ x.name }}</h5>
+                      <p class="card-text">Rs.{{ x.price }}</p>
+  
+                      {% if x.cat == 1 %}
+                      <p class="card-text">cpu</p>
+                      {% elif x.cat == 2 %}
+                      <p class="card-text">graphic-card</p>
+                      {% elif x.cat == 3 %}
+                      <p class="card-text">motherboard</p>
+                      {% endif %}
+  
+                      <a href="./pdetails/{{ x.id }}" class="btn btn-warning">See Details</a>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+    </div>
+  </div>
+</div>
+<!--Main end-->
+   
+<!--main end-->
+{% endblock main %}
+    
